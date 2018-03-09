@@ -16,32 +16,12 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn import preprocessing
 from sklearn.metrics import accuracy_score
-from sklearn.model_selection import cross_val_score
-
-def split(x,y,per):
-    i = math.floor(len(x)*per)
-    train_x, test_x, train_y, test_y = x[:-i],x[-i:],y[:-i],y[-i:]
-    return train_x, test_x, train_y, test_y
+from sklearn.utils import shuffle
 
 def read_dataset():
-    X=[]
-    y=[]
-    simavg, weiavg, momentum, stoK, stoD, rsi, MACD, WR, ado, CCI,monindex, label = features.features("yahoostock.csv")
-    X.append(simavg)
-    X.append(weiavg)
-    X.append(momentum)
-    X.append(stoK)
-    X.append(stoD)
-    X.append(rsi)
-    X.append(MACD)
-    X.append(WR)
-    X.append(ado)
-    X.append(CCI)
-    X.append(monindex)
-    y.append(label)
-    X = np.array(X)
-    X = X.transpose()
-
+    
+    X,y = features.features("yahoostock.csv")
+    
     X = X[27:5010]
     print(X.shape)
     X = pd.DataFrame(X)
@@ -49,8 +29,6 @@ def read_dataset():
     np_scaled = min_max_scaler.fit_transform(X)
     X = pd.DataFrame(np_scaled)
     X = X.values
-    y = np.array(y)
-    y = y.transpose()
     y = y[27:5010]
     y = pd.DataFrame(y)
     print(y.shape)
@@ -65,7 +43,8 @@ def read_dataset():
 
 # Read the dataset
 X, Y = read_dataset()
-train_x, test_x, train_y, test_y = split(X,Y,0.20)
+X, Y = shuffle(X, Y, random_state=1)
+train_x, test_x, train_y, test_y = train_test_split(X,Y, test_size=0.20, random_state=415) 
 
 print(train_x)
 clf = svm.SVC(gamma=0.01, C=1000)

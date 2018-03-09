@@ -185,6 +185,24 @@ def features(dataset):
         ado.append(ans)
 
     label.append(0)
-
-    return simavg, weiavg, ROC, stoK, stoD, rsi, MACD, WR, ado, CCI,monindex, label
+    X=[]
+    y=[]
+    X.append(simavg)
+    X.append(weiavg)
+    X.append(ROC)
+    X.append(stoK)
+    X.append(stoD)
+    X.append(rsi)
+    X.append(MACD)
+    X.append(WR)
+    X.append(ado)
+    X.append(CCI)
+    X.append(monindex)
+    y.append(label)
+    X = np.array(X)
+    X = X.transpose()
+    y = np.array(y)
+    y = y.transpose()
+    
+    return X,y
 
