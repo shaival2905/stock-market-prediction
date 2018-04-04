@@ -33,6 +33,6 @@ Mean error of linear:  0.6860455
 
 graph is plot on predicted price and actual prize to compare.
 
-I am focusing more on calculating the and finding features which affects the stock prices. Right now i have only calculated 10 features using moving average for 10 days. 
+I am focusing more on calculating the and finding features which affects the stock prices. Right now i have only calculated 11 features using moving average for 10 days. 
 Features are mentioned in the code
 I have selected these features on the basis of literature survey of research papers.  
