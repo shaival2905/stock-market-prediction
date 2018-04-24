@@ -46,14 +46,14 @@ def weigavg(d):
 def features(dataset):
     df = pd.read_csv(dataset)
     #date = df[df.columns[0]]
-    df = df.iloc[::-1]
+    #df = df.iloc[::-1]
     date=pd.to_datetime(df['Date'])
     
     mon = date.dt.month
     mon = mon.values
-    high = df[df.columns[3]].values
-    low = df[df.columns[4]].values
-    close = df[df.columns[5]].values
+    high = df['High'].values
+    low = df['Low'].values
+    close = df['Close'].values
     monindex = calcmonindex.calcmonindex(mon,close) #It shows the trend in particular month
     monindex = np.array(monindex)
     Hh=[]

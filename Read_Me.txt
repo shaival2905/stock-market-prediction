@@ -14,7 +14,7 @@ Main reason behind this is relu function creates more sparse data when W*X + B <
 
 taking sigmoid or relu activation function in output layer i.e last layer gives almost same accuracy so I have taken sigmoid function to obtain non linear model. Also I have normalized the dataset.
 
-The accuracy got in ANN model is 54.04%
+The accuracy got in ANN model is 69.77%
 
 2) Other classifier used is Support Vector Machine(SVM)
 It is created using scikit learn library.
