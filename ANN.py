@@ -9,7 +9,6 @@ PLEASE READ THE Read_Me.txt file
 """
 
 
-import math
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import features
@@ -18,7 +17,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
-
+from keras.models import model_from_json
 
 def read_dataset():
     
@@ -73,6 +72,15 @@ round_value = [round(x[0]) for x in predict]
 print(round_value)
 
 # evaluate the model
+print("training accuracy")
 scores = model.evaluate(train_x, train_y)
 print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
 
+# serialize model to JSON
+model_json = model.to_json()
+with open("model.json", "w") as json_file:
+    json_file.write(model_json)
+# serialize weights to HDF5
+model.save_weights("model.h5")
+print("Model Saved")
+ 
